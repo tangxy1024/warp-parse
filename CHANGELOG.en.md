@@ -7,6 +7,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.7] - 2026-01-30
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.13.1.
+- Upgraded `wp-connectors` to v0.7.5-beta.
+
+## [0.15.6] - 2026-01-29
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.13.0-alpha with the following key changes:
+  - **WPL Parser Enhancement**: Added support for `\t` (tab) and `\S` (non-whitespace) separators in parsing expressions
+  - **WPL Parser Enhancement**: Added support for quoted field names with special characters (e.g., `"field.name"`, `"field-name"`)
+  - **New Function**: Added `chars_replace` function for character-level string replacement
+  - **Logging Optimization**: High-frequency log paths now use `log_enabled!` guard to eliminate loop overhead when log level is filtered
+  - **Removed Feature**: Removed `SO_REUSEPORT` multi-instance support from Syslog UDP Source (security risk and cross-platform inconsistency)
+
+## [0.15.5] - 2026-01-28
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.11.0-alpha.
+- Updated project dependencies to latest versions.
+
+## [0.15.4] - 2026-01-27
+
+### Changed
+- Updated all dependencies to latest versions for improved stability and performance.
+
+## [0.15.3] - 2026-01-23
+
+### Fixed
+- Fixed wp-motor related issues to improve runtime stability.
+
+## [0.15.2] - 2026-01-22
+
+### Changed
+- Migrated from `wp-engine` to `wp-motor` v1.10.2-beta:
+  - wp-engine project has been renamed to wp-motor, all dependencies updated to point to new repository
+  - Upgraded to v1.10.2-beta with latest runtime features and performance optimizations
+
+## [0.15.1] - 2026-01-18
+
+### Added
+- Integrated shadow-rs for build-time information support (#100):
+  - Added shadow-rs as build dependency to generate metadata at compile time
+  - Version command now displays Git commit, build time, and Rust compiler version
+  - Enhanced traceability for deployed binaries to facilitate troubleshooting
+
+### Changed
+- Updated project dependencies to latest versions.
+
 ## [0.15.0] - 2025-01-17
 
 ### Changed

@@ -16,11 +16,11 @@
 
 [package]
 name = "warp-parse"
-version = "0.15.3"
+version = "0.15.7"
 edition = "2021"
 rust-version = "1.75"
 authors = ["Warp Parse Team"]
-license = "ELv2"
+license = "Apache-2.0"
 description = "High-performance flow data parsing and processing system"
 repository = "https://github.com/wp-labs/warp-parse"
 keywords = ["parsing", "data-processing", "security", "log-analysis"]
@@ -228,32 +228,25 @@ wp-conf-base = "0.1"
 wp-data-fmt = "0.1"
 
 # --- Internal: Engine ---
-wp-engine     = {                            git = "https://github.com/wp-labs/wp-motor", tag = "v1.10.3" }
-wp-config     = { package = "wp-config",     git = "https://github.com/wp-labs/wp-motor", tag = "v1.10.3" }
-wp-lang       = { package = "wp-lang",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.10.3" }
-wp_knowledge  = { package = "wp-knowledge",  git = "https://github.com/wp-labs/wp-motor", tag = "v1.10.3" }
-wp-cli-core   = { package = "wp-cli-core",   git = "https://github.com/wp-labs/wp-motor", tag = "v1.10.3" }
-wp-proj       = { package = "wp-proj",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.10.3" }
 
-wp-connectors = { package = "wp-connectors", git = "https://github.com/wp-labs/wp-connectors", tag = "v0.7.5-alpha.1" }
+wp-engine     = {                            git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+wp-config     = { package = "wp-config",     git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+wp-lang       = { package = "wp-lang",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+wp_knowledge  = { package = "wp-knowledge",  git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+wp-cli-core   = { package = "wp-cli-core",   git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+wp-proj       = { package = "wp-proj",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+
+wp-connectors = { package = "wp-connectors", git = "https://github.com/wp-labs/wp-connectors", tag = "v0.7.5-beta" }
 
 
-# ===========================================================================
-# Local Development Patches (template)
-# ===========================================================================
-# Uncomment to use local paths instead of git dependencies:
+#wp-engine = { path = "../wp-motor" }
+#wp-config = { path = "../wp-motor/crates/wp-config" }
+#wp-lang   = { path = "../wp-motor/crates/wp-lang" }
+#wp-knowledge  = { path = "../wp-motor/crates/wp-knowledge" }
+#wp-cli-core   = { path = "../wp-motor/crates/wp-cli-core" }
+#wp-proj       = { path = "../wp-motor/crates/wp-proj" }
 #
-#[patch."https://github.com/wp-labs/wp-engine"]
-#wp-engine = { path = "../wp-engine" }
-#wp-config = { path = "../wp-engine/crates/wp-config" }
-#wp-lang   = { path = "../wp-engine/crates/wp-lang" }
-#wp-knowledge  = { path = "../wp-engine/crates/wp-knowledge" }
-#wp-cli-core   = { path = "../wp-engine/crates/wp-cli-core" }
-#wp-proj       = { path = "../wp-engine/crates/wp-proj" }
-#
-# [patch."https://github.com/wp-labs/wp-enterprise"]
 # wp-enterprise = { path = "../wp-enterprise" }
 
 
-# [patch."https://github.com/wp-labs/wp-connectors"]
 # wp-connectors = { path = "../wp-connectors"}

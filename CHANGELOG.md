@@ -7,6 +7,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.7] - 2026-01-30
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.13.1 版本。
+- 升级 `wp-connectors` 到 v0.7.5-beta 版本。
+
+## [0.15.6] - 2026-01-29
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.13.0-alpha 版本，主要变化包括：
+  - **WPL 解析器增强**：支持 `\t`（制表符）和 `\S`（非空白字符）分隔符
+  - **WPL 解析器增强**：支持带引号的特殊字符字段名（如 `"field.name"`、`"field-name"`）
+  - **新增函数**：`chars_replace` 字符级字符串替换函数
+  - **日志优化**：高频日志路径使用 `log_enabled!` 守卫，消除日志级别过滤时的循环开销
+  - **移除功能**：Syslog UDP Source 移除 `SO_REUSEPORT` 多实例支持（安全风险及跨平台不一致）
+
+## [0.15.5] - 2026-01-28
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.11.0-alpha 版本。
+- 更新项目依赖到最新版本。
+
+## [0.15.4] - 2026-01-27
+
+### Changed
+- 更新所有依赖到最新版本，提升稳定性和性能。
+
+## [0.15.3] - 2026-01-23
+
+### Fixed
+- 修复 wp-motor 相关问题，提升运行时稳定性。
+
+## [0.15.2] - 2026-01-22
+
+### Changed
+- 从 `wp-engine` 迁移到 `wp-motor` v1.10.2-beta 版本：
+  - wp-engine 项目已更名为 wp-motor，所有依赖已更新指向新仓库
+  - 升级到 v1.10.2-beta 版本，包含最新的运行时特性与性能优化
+
+## [0.15.1] - 2026-01-18
+
+### Added
+- 集成 shadow-rs 构建时信息支持 (#100)：
+  - 添加 shadow-rs 作为构建依赖，在编译时生成元数据
+  - 版本命令现在显示 Git commit、构建时间和 Rust 编译器版本
+  - 提升部署二进制文件的可追溯性，便于问题排查
+
+### Changed
+- 更新项目依赖到最新版本。
+
 ## [0.15.0] - 2025-01-17
 
 ### Changed
