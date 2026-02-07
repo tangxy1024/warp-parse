@@ -128,7 +128,7 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 - 更新项目依赖到最新版本。
 
-## [0.15.0] - 2025-01-17
+## [0.15.0] - 2026-01-17
 
 ### Changed
 - 升级 `wp-engine` 核心引擎到 v1.10.0-alpha 版本，主要变化包括：
@@ -137,7 +137,7 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - **API 改进**：修复了 wp-cli-core 中 `validate_groups` 函数导出问题，现在从 `wp_cli_core::utils::validate` 模块导出
 - 升级 `wp-model-core` 到 0.7.1 版本。
 
-## [0.14.0] - 2025-01-16
+## [0.14.0] - 2026-01-16
 
 ### Added
 - 新增 `wproj rescue stat` 命令，用于统计 rescue 目录中的数据：
@@ -179,7 +179,7 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 [0.13.1]: https://github.com/wp-labs/warp-parse/releases/tag/v0.13.1
 
-## [0.13.0] - 2024-05-09
+## [0.13.0] - 2025-05-09
 
 > :information_source: 本次版本紧随 [wp-engine v1.8.0 changelog](https://github.com/wp-labs/wp-engine/releases/tag/v1.8.0) 调整，CLI 侧变更以适配核心引擎 API 为主，建议同时阅读引擎发布说明以了解 runtime 行为差异。
 
