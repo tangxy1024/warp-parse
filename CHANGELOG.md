@@ -7,6 +7,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.0] - 2026-02-07
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.15.1 版本，主要变化包括：
+  - **WPL 管道函数**：新增 `not()` 包装函数用于反转管道函数结果
+    - 语法：`| not(f_chars_has(dev_type, NDS))` 当 dev_type ≠ NDS 时成功
+    - 支持包装任何字段管道函数（f_has、f_chars_has、chars_has 等）
+    - 保留字段值 - 仅反转成功/失败结果
+    - 支持嵌套否定：`not(not(...))` 用于双重否定逻辑
+  - **WPL not() 分组**：新增 `not()` 组包装器用于字段解析中的否定断言
+  - **OML 静态代码块**：引入 `static { ... }` 语法用于模型范围的常量和模板缓存
+    - 静态表达式在模型加载时仅执行一次，结果存储在常量池中供所有记录复用，避免重复构造 `object { ... }`
+    - 静态符号可直接用于赋值、`match` 分支、`object { field = tpl; }`、默认值 `{ _ : tpl }` 等场景
+  - **OML 配置增强**：新增 `enable` 配置选项，支持禁用 OML 模型
+  - **Sinks/File**：新增 `sync` 参数控制磁盘刷新策略
+    - `sync: false`（默认）：高性能模式，使用缓冲写入，适合大数据量场景
+    - `sync: true`：实时磁盘写入，保证数据安全，适合关键数据场景
+  - **Sinks/File**：移除 proto binary 格式支持，当前支持格式：json、csv、kv、show、raw、proto-text
+  - **Sinks/Logging**：统一整个代码库的事件 ID 命名以支持端到端追踪
+  - **修复问题**：修复 `sync` 参数未强制数据写入磁盘的问题（现在 `sync: true` 时会在 `flush()` 后调用 `sync_all()`）
+  - **修复问题**：修复 WP-OML 测试中 `DataRecord` 初始化以兼容 wp-model-core 0.7.2
+  - **修复问题**：修复 WPL 管道函数 `f_chars_not_has` 和 `chars_not_has` 的类型检查 bug
+    - 之前：非 Chars 字段（如 Digit）错误地返回 FALSE
+    - 现在：非 Chars 字段正确返回 TRUE（它们"不是目标 Chars 值"）
+    - 语义：缺失字段 OR 非 Chars 类型 OR 值 ≠ 目标 → TRUE；值 == 目标 → FALSE
+  - **修复问题**：修复 OML benchmarks 中的编译错误
+- 更新项目依赖到最新版本，包括 clap、criterion、httpmock、time 等核心库
+
 ## [0.16.1] - 2026-02-05
 
 ### Changed

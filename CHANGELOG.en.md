@@ -7,6 +7,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.17.0] - 2026-02-07
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.15.1 with the following key changes:
+  - **WPL Pipe Functions**: Added `not()` wrapper function for inverting pipe function results
+    - Syntax: `| not(f_chars_has(dev_type, NDS))` succeeds when dev_type ≠ NDS
+    - Supports wrapping any field pipe function (f_has, f_chars_has, chars_has, etc.)
+    - Preserves field value - only inverts success/failure result
+    - Supports nested negation: `not(not(...))` for double negation logic
+  - **WPL not() Group**: Added `not()` group wrapper for negative assertion in field parsing
+  - **OML Static Blocks**: Introduced `static { ... }` sections for model-scoped constants and template caching
+    - Static expressions are executed only once during model loading, results stored in constant pool for reuse across records, avoiding repeated `object { ... }` construction
+    - Static symbols can be directly used in assignments, `match` branches, `object { field = tpl; }`, default values `{ _ : tpl }`, and other scenarios
+  - **OML Enable Configuration**: Added `enable` configuration option to support disabling OML models
+  - **Sinks/File**: Added `sync` parameter to control immediate disk flushing
+    - `sync: false` (default): High-performance mode with buffered writes, suitable for large data volumes
+    - `sync: true`: Real-time disk writes for data safety, suitable for critical data
+  - **Sinks/File**: Removed proto binary format support; supported output formats: json, csv, kv, show, raw, proto-text
+  - **Sinks/Logging**: Unified event ID naming across the codebase for end-to-end tracing
+  - **Bug Fixes**: Fixed `sync` parameter not forcing data to disk (now calls `sync_all()` after `flush()` when `sync: true`)
+  - **Bug Fixes**: Fixed `DataRecord` initialization in WP-OML tests for compatibility with wp-model-core 0.7.2
+  - **Bug Fixes**: Fixed type checking bug in WPL pipe functions `f_chars_not_has` and `chars_not_has`
+    - Previously: Non-Chars fields (e.g., Digit) incorrectly returned FALSE
+    - Now: Non-Chars fields correctly return TRUE (they are "not the target Chars value")
+    - Semantics: Missing field OR non-Chars type OR value ≠ target → TRUE; value == target → FALSE
+  - **Bug Fixes**: Fixed compilation errors in OML benchmarks
+- Updated project dependencies to latest versions, including clap, criterion, httpmock, time, and other core libraries
+
 ## [0.16.1] - 2026-02-05
 
 ### Changed
