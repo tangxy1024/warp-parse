@@ -16,7 +16,7 @@
 
 [package]
 name = "warp-parse"
-version = "0.15.6"
+version = "0.17.1"
 edition = "2021"
 rust-version = "1.75"
 authors = ["Warp Parse Team"]
@@ -229,14 +229,17 @@ wp-data-fmt = "0.1"
 
 # --- Internal: Engine ---
 
-wp-engine     = {                            git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
-wp-config     = { package = "wp-config",     git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
-wp-lang       = { package = "wp-lang",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
-wp_knowledge  = { package = "wp-knowledge",  git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
-wp-cli-core   = { package = "wp-cli-core",   git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
-wp-proj       = { package = "wp-proj",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.13.1" }
+# feats/oml_static.1
 
-wp-connectors = { package = "wp-connectors", git = "https://github.com/wp-labs/wp-connectors", tag = "v0.7.5-beta" }
+
+wp-engine     = {                            git = "https://github.com/wp-labs/wp-motor", tag = "v1.15.5" }
+wp-config     = { package = "wp-config",     git = "https://github.com/wp-labs/wp-motor", tag = "v1.15.5" }
+wp-lang       = { package = "wp-lang",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.15.5" }
+wp_knowledge  = { package = "wp-knowledge",  git = "https://github.com/wp-labs/wp-motor", tag = "v1.15.5" }
+wp-cli-core   = { package = "wp-cli-core",   git = "https://github.com/wp-labs/wp-motor", tag = "v1.15.5" }
+wp-proj       = { package = "wp-proj",       git = "https://github.com/wp-labs/wp-motor", tag = "v1.15.5" }
+
+wp-connectors = { package = "wp-connectors", git = "https://github.com/wp-labs/wp-connectors", tag = "v0.7.6-beta" }
 
 
 #wp-engine = { path = "../wp-motor" }
@@ -245,7 +248,7 @@ wp-connectors = { package = "wp-connectors", git = "https://github.com/wp-labs/w
 #wp-knowledge  = { path = "../wp-motor/crates/wp-knowledge" }
 #wp-cli-core   = { path = "../wp-motor/crates/wp-cli-core" }
 #wp-proj       = { path = "../wp-motor/crates/wp-proj" }
-#
+
 # wp-enterprise = { path = "../wp-enterprise" }
 
 

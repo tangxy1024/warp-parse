@@ -7,7 +7,73 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.15.6] - 2026-01-30
+## [0.17.1] - 2026-02-09
+
+### Changed
+- Upgraded `wp-motor` core engine from v1.15.1 to v1.15.5 with key improvements:
+  - **Documentation**: Added complete English WPL grammar reference documentation
+  - **Performance**: OML batch processing performance improved by 12-17%
+  - **Performance**: OML zero-copy optimization, multi-stage pipeline performance improved up to 32%
+- Updated project dependencies to latest versions
+
+## [0.17.0] - 2026-02-07
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.15.1 with the following key changes:
+  - **WPL Features**: Added `not()` wrapper function for inverting pipe function results
+  - **WPL Features**: Added `not()` group wrapper for negative assertion in field parsing
+  - **OML Features**: Introduced `static { ... }` sections for model-scoped constants and template caching to improve performance
+  - **OML Configuration**: Added `enable` configuration option to support disabling OML models
+  - **Sinks/File**: Added `sync` parameter to control disk flushing strategy (high-performance mode vs data safety mode)
+  - **Sinks/File**: Removed proto binary format support; supported formats: json, csv, kv, show, raw, proto-text
+  - **Bug Fixes**: Fixed `sync` parameter not forcing data to disk
+  - **Bug Fixes**: Fixed type checking bug in WPL pipe functions `f_chars_not_has` and `chars_not_has`
+- Updated project dependencies to latest versions
+
+## [0.16.1] - 2026-02-05
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.14.1-alpha with the following key changes:
+  - **WPL Pipe Processor**: Added `strip/bom` processor for removing BOM (Byte Order Mark) from data
+    - Supports UTF-8, UTF-16 LE/BE, and UTF-32 LE/BE BOM detection and removal
+    - Fast O(1) detection by checking only first 2-4 bytes
+    - Preserves input container type (String → String, Bytes → Bytes, ArcBytes → ArcBytes)
+
+## [0.16.0] - 2026-02-04
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.14.0 with the following key changes:
+  - **WPL Functions**: Added `starts_with` pipe function for efficient string prefix matching
+  - **OML Pipe Functions**: Added `starts_with` function for prefix matching in OML query language
+  - **OML Pipe Functions**: Added `map_to` function for type-aware conditional value assignment (supports string, integer, float, boolean)
+  - **OML Match Expression**: Added function-based pattern matching support (`match read(field) { starts_with('prefix') => result }`)
+    - String matching functions: `starts_with`, `ends_with`, `contains`, `regex_match`, `is_empty`, `iequals`
+    - Numeric comparison functions: `gt`, `lt`, `eq`, `in_range`
+  - **OML Parser**: Added quoted string support for `chars()` and other value constructors (single and double quotes)
+  - **OML Transformer**: Added automatic temporary field filtering (fields starting with `__` are converted to ignore type)
+  - **OML Syntax**: Made `pipe` keyword optional in pipe expressions (both `take(field) | func` and `pipe take(field) | func` supported)
+  - **Bug Fixes**: Fixed `in_range` function parsing failure in OML match expressions
+  - **Bug Fixes**: Fixed large integer precision loss in `map_to` parser
+  - **Bug Fixes**: Fixed OML display output round-trip parsing compatibility
+
+## [0.15.8] - 2026-02-03
+
+### Changed
+- Upgraded `wp-motor` core engine to v1.13.3 with the following key changes:
+  - **WPL Parser**: Added support for `\t` (tab) and `\S` (non-whitespace) separators in parsing expressions
+  - **WPL Parser**: Added support for quoted field names with special characters (e.g., `"field.name"`, `"field-name"`)
+  - **WPL Functions**: Added `regex_match` function for regex pattern matching
+  - **WPL Functions**: Added `digit_range` function for numeric range validation
+  - **WPL Functions**: Added `chars_replace` function for character-level string replacement
+  - **Logging Optimization**: High-frequency log paths now use `log_enabled!` guard to eliminate loop overhead when log level is filtered
+  - **Bug Fixes**: Fixed compilation errors in WPL pattern parser implementations
+  - **Bug Fixes**: Fixed data rescue functionality data loss issue
+  - **Bug Fixes**: Removed base64 encoding from Miss Sink raw data display to show actual content
+- Updated all dependencies to latest versions.
+- **License Change**: Project license changed from Elastic License 2.0 to Apache 2.0.
+- **Documentation**: Added CONTRIBUTING.md and updated README.md.
+
+## [0.15.7] - 2026-01-30
 
 ### Changed
 - Upgraded `wp-motor` core engine to v1.13.1 with the following key changes:
