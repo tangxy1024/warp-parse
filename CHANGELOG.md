@@ -11,6 +11,7 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 - 升级 `wp-motor` 核心引擎从 v1.17.4-alpha 到 v1.17.5-alpha
+- 升级 `wp-connectors` 从 v0.7.7-beta 到 v0.7.8-beta
 - 更新项目依赖到最新版本
 
 ## [0.18.2] - 2026-02-20
