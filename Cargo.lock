@@ -3100,8 +3100,8 @@ dependencies = [
 
 [[package]]
 name = "orion_exp"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "arcstr",
  "chrono",
@@ -3113,8 +3113,8 @@ dependencies = [
 
 [[package]]
 name = "orion_overload"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "derive-getters",
@@ -5381,7 +5381,7 @@ dependencies = [
 
 [[package]]
 name = "warp-parse"
-version = "0.18.2"
+version = "0.18.3"
 dependencies = [
  "anyhow",
  "async-broadcast",
@@ -6203,8 +6203,8 @@ dependencies = [
 
 [[package]]
 name = "wp-cli-core"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6245,8 +6245,8 @@ dependencies = [
 
 [[package]]
 name = "wp-config"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -6261,7 +6261,7 @@ dependencies = [
  "orion-error",
  "orion-variate",
  "orion_conf",
- "orion_exp 1.17.4",
+ "orion_exp 1.17.5",
  "orion_overload",
  "serde",
  "serde_derive",
@@ -6379,15 +6379,15 @@ dependencies = [
 
 [[package]]
 name = "wp-data-utils"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "arcstr",
  "chrono",
  "derive_builder",
  "lru",
  "orion-error",
- "orion_exp 1.17.4",
+ "orion_exp 1.17.5",
  "serde",
  "serde_derive",
  "serde_json",
@@ -6397,8 +6397,8 @@ dependencies = [
 
 [[package]]
 name = "wp-engine"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "async-broadcast",
@@ -6434,7 +6434,7 @@ dependencies = [
  "orion-sec",
  "orion-variate",
  "orion_conf",
- "orion_exp 1.17.4",
+ "orion_exp 1.17.5",
  "orion_overload",
  "rand 0.10.0",
  "regex",
@@ -6515,8 +6515,8 @@ dependencies = [
 
 [[package]]
 name = "wp-knowledge"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "chrono",
@@ -6553,8 +6553,8 @@ dependencies = [
 
 [[package]]
 name = "wp-lang"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "ahash",
  "anyhow",
@@ -6683,8 +6683,8 @@ dependencies = [
 
 [[package]]
 name = "wp-oml"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "arcstr",
@@ -6707,7 +6707,7 @@ dependencies = [
  "once_cell",
  "orion-error",
  "orion_conf",
- "orion_exp 1.17.4",
+ "orion_exp 1.17.5",
  "parse-display",
  "parse-display-derive",
  "regex",
@@ -6751,17 +6751,17 @@ dependencies = [
 
 [[package]]
 name = "wp-parser"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
- "orion_exp 1.17.4",
+ "orion_exp 1.17.5",
  "winnow",
 ]
 
 [[package]]
 name = "wp-proj"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "comfy-table",
@@ -6826,8 +6826,8 @@ dependencies = [
 
 [[package]]
 name = "wp-stats"
-version = "1.17.4"
-source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.4-alpha#f9cb90d323991d459336335b1bef39e0dd52ec19"
+version = "1.17.5"
+source = "git+https://github.com/wp-labs/wp-motor?tag=v1.17.5-alpha#bf828bf834e326ca8207432af96149bfb7337ebf"
 dependencies = [
  "anyhow",
  "chrono",
