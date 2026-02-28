@@ -7,7 +7,73 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.15.6] - 2026-01-30
+## [0.17.1] - 2026-02-09
+
+### Changed
+- 升级 `wp-motor` 核心引擎从 v1.15.1 到 v1.15.5，主要变化包括：
+  - **文档**：新增完整的英文 WPL 语法参考文档
+  - **性能优化**：OML 批处理性能提升 12-17%
+  - **性能优化**：OML 零拷贝优化，多阶段管道性能提升最高 32%
+- 更新项目依赖到最新版本
+
+## [0.17.0] - 2026-02-07
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.15.1 版本，主要变化包括：
+  - **WPL 新增功能**：新增 `not()` 包装函数用于反转管道函数结果
+  - **WPL 新增功能**：新增 `not()` 组包装器用于字段解析中的否定断言
+  - **OML 新增功能**：引入 `static { ... }` 语法用于模型范围的常量和模板缓存，提升性能
+  - **OML 配置**：新增 `enable` 配置选项，支持禁用 OML 模型
+  - **Sinks/File**：新增 `sync` 参数控制磁盘刷新策略（高性能模式 vs 数据安全模式）
+  - **Sinks/File**：移除 proto binary 格式支持，当前支持格式：json、csv、kv、show、raw、proto-text
+  - **Bug 修复**：修复 `sync` 参数未强制数据写入磁盘的问题
+  - **Bug 修复**：修复 WPL 管道函数 `f_chars_not_has` 和 `chars_not_has` 的类型检查 bug
+- 更新项目依赖到最新版本
+
+## [0.16.1] - 2026-02-05
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.14.1-alpha 版本，主要变化包括：
+  - **WPL 管道处理器**：新增 `strip/bom` 处理器用于移除 BOM（字节顺序标记）
+    - 支持 UTF-8、UTF-16 LE/BE、UTF-32 LE/BE BOM 检测和移除
+    - O(1) 快速检测（仅检查前 2-4 字节）
+    - 保留输入容器类型（String → String, Bytes → Bytes, ArcBytes → ArcBytes）
+
+## [0.16.0] - 2026-02-04
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.14.0 版本，主要变化包括：
+  - **WPL 函数增强**：新增 `starts_with` 管道函数，用于高效字符串前缀匹配
+  - **OML 管道函数**：新增 `starts_with` 函数用于前缀匹配
+  - **OML 管道函数**：新增 `map_to` 函数用于类型感知的条件值分配（支持 string、integer、float、boolean）
+  - **OML 匹配表达式**：支持基于函数的模式匹配（`match read(field) { starts_with('prefix') => result }`）
+    - 字符串匹配函数：`starts_with`、`ends_with`、`contains`、`regex_match`、`is_empty`、`iequals`
+    - 数值比较函数：`gt`、`lt`、`eq`、`in_range`
+  - **OML 解析器**：支持 `chars()` 等值构造器中的引号字符串（单引号和双引号）
+  - **OML 转换器**：新增临时字段自动过滤功能（以 `__` 开头的字段自动转换为 ignore 类型）
+  - **OML 语法简化**：管道表达式中 `pipe` 关键字现在为可选（`take(field) | func` 和 `pipe take(field) | func` 都支持）
+  - **修复问题**：修复 OML 匹配表达式中 `in_range` 函数解析失败的问题
+  - **修复问题**：修复 `map_to` 解析器中大整数精度丢失的问题
+  - **修复问题**：修复 OML 显示输出的往返解析兼容性问题
+
+## [0.15.8] - 2026-02-03
+
+### Changed
+- 升级 `wp-motor` 核心引擎到 v1.13.3 版本，主要变化包括：
+  - **WPL 解析器**：支持 `\t`（制表符）和 `\S`（非空白字符）分隔符
+  - **WPL 解析器**：支持带引号的特殊字符字段名（如 `"field.name"`、`"field-name"`）
+  - **WPL 函数增强**：新增 `regex_match` 正则匹配函数
+  - **WPL 函数增强**：新增 `digit_range` 数字范围验证函数
+  - **WPL 函数增强**：新增 `chars_replace` 字符级字符串替换函数
+  - **日志优化**：高频日志路径使用 `log_enabled!` 守卫，消除日志级别过滤时的循环开销
+  - **修复问题**：修复 WPL 模式解析器的编译错误
+  - **修复问题**：修复数据救援功能的数据丢失问题
+  - **修复问题**：移除 Miss Sink 原始数据显示中的 base64 编码，直接显示实际内容
+- 更新所有依赖到最新版本。
+- **许可证变更**：项目许可证从 Elastic License 2.0 变更为 Apache 2.0。
+- **文档改进**：新增 CONTRIBUTING.md 贡献指南，更新 README.md 说明文档。
+
+## [0.15.7] - 2026-01-30
 
 ### Changed
 - 升级 `wp-motor` 核心引擎到 v1.13.1 版本，主要变化包括：
