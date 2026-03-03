@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.3] - 2026-02-27
+
+### Changed
+- Upgraded `wp-motor` core engine from v1.17.4-alpha to v1.17.5-alpha
+- Upgraded `wp-connectors` from v0.7.7-beta to v0.7.8-beta
+- Updated project dependencies to latest versions
+
 ## [0.18.2] - 2026-02-20
 
 ### Changed
