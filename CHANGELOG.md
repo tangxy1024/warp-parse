@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.4] - 2026-03-04
+
+### Changed
+- 升级 `wp-motor` 核心引擎从 v1.17.5 到 v1.17.6
+- `wp-motor` v1.17.6 主要增强观测与统计链路（背压指标、聚合语义修正、热路径优化），并修复 parser 退出与 recovery failover 稳定性问题
+
 ## [0.18.3] - 2026-02-27
 
 ### Changed
