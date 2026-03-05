@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.5 Unreleased]
+
+### Changed
+- **wp-motor**: 核心引擎依赖从 `v1.17.6` 升级到 `v1.17.7`。
+- **Runtime/Shutdown**: 同步 `wp-motor` 的运行时改动，统一退出策略（exit-policy）与信号交接流程，提升 batch/daemon 生命周期行为一致性。
+
 ## [0.18.4] - 2026-03-04
 
 ### Changed

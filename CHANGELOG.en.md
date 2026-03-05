@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.5 Unreleased]
+
+### Changed
+- **wp-motor**: Upgrade core engine dependency from `v1.17.6` to `v1.17.7`.
+- **Runtime/Shutdown**: Pull `wp-motor` runtime changes that unify exit-policy shutdown and signal handoff for more consistent batch/daemon lifecycle behavior.
+
 ## [0.18.4] - 2026-03-04
 
 ### Changed
