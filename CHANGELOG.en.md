@@ -10,8 +10,11 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [0.18.5 Unreleased]
 
 ### Changed
-- **wp-motor**: Upgrade core engine dependency from `v1.17.6` to `v1.17.7`.
-- **Runtime/Shutdown**: Pull `wp-motor` runtime changes that unify exit-policy shutdown and signal handoff for more consistent batch/daemon lifecycle behavior.
+- **wp-motor**: Upgraded core engine dependency from `v1.17.6` to `v1.17.8`.
+- **Dependencies**: Refreshed dependency pins and lockfile to keep `beta` branch builds consistent.
+
+### Fixed
+- **wp-lang**: Pulled fixes from `wp-motor v1.17.8` for `kv`/`kvarr` complex key parsing (keys containing `()`, `[]`, `<>`, `{}`) and `@...` path parsing behavior.
 
 ## [0.18.4] - 2026-03-04
 

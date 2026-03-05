@@ -10,8 +10,11 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [0.18.5 Unreleased]
 
 ### Changed
-- **wp-motor**: 核心引擎依赖从 `v1.17.6` 升级到 `v1.17.7`。
-- **Runtime/Shutdown**: 同步 `wp-motor` 的运行时改动，统一退出策略（exit-policy）与信号交接流程，提升 batch/daemon 生命周期行为一致性。
+- **wp-motor**: 核心引擎依赖从 `v1.17.6` 升级到 `v1.17.8`。
+- **Dependencies**: 同步依赖版本与锁文件，保持 `beta` 分支构建一致性。
+
+### Fixed
+- **wp-lang**: 随 `wp-motor v1.17.8` 引入对 `kv`/`kvarr` 复杂 key（含 `()`, `[]`, `<>`, `{}`）解析与 `@...` 路径解析的修复。
 
 ## [0.18.4] - 2026-03-04
 
