@@ -7,14 +7,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.18.5 Unreleased]
+## [0.19.0 Unreleased]
 
 ### Changed
-- **wp-motor**: Upgraded core engine dependency from `v1.17.6` to `v1.17.8`.
-- **Dependencies**: Refreshed dependency pins and lockfile to keep `beta` branch builds consistent.
+- **Version**: Bumped project version to `0.19.0`.
+- **wp-motor**: Upgraded core engine dependency from `v1.17.8` to `v1.18.0`.
+- **wp-connectors**: Upgraded connector dependency from `v0.7.10-beta` to `v0.9.0`.
+- **Dependencies**: Migrated core dependency stack to newer major lines (`orion-error 0.6`, `wp-connector-api 0.8`, `wp-error 0.8`, `wp-log 0.2`, etc.).
+- **Runtime Connectors**: Temporarily skipped community external connector factory registration with warning logs to avoid API mismatch during dependency transition.
 
 ### Fixed
-- **wp-lang**: Pulled fixes from `wp-motor v1.17.8` for `kv`/`kvarr` complex key parsing (keys containing `()`, `[]`, `<>`, `{}`) and `@...` path parsing behavior.
+- **Error Handling**: Adapted to `orion-error 0.6` (`UvsFrom`/`from_*`) and unified error-context attachment behavior.
+- **Build**: Fixed compile failures after dependency upgrades and restored passing `cargo check --all-targets`.
 
 ## [0.18.4] - 2026-03-04
 
