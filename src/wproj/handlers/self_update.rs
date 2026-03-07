@@ -48,6 +48,13 @@ struct SelfCheckReport {
     sha256: String,
 }
 
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+enum VersionRelation {
+    UpdateAvailable,
+    UpToDate,
+    AheadOfChannel,
+}
+
 pub async fn run_self_check(args: SelfCheckArgs) -> RunResult<()> {
     let branch = warp_parse::build::BRANCH.to_string();
     let channel = args
@@ -58,7 +65,8 @@ pub async fn run_self_check(args: SelfCheckArgs) -> RunResult<()> {
 
     let current_version = parse_version(warp_parse::build::PKG_VERSION)?;
     let latest_version = parse_version(&release.version)?;
-    let update_available = latest_version > current_version;
+    let relation = compare_versions(&current_version, &latest_version);
+    let update_available = relation == VersionRelation::UpdateAvailable;
 
     let report = SelfCheckReport {
         channel: channel.as_str().to_string(),
@@ -77,25 +85,79 @@ pub async fn run_self_check(args: SelfCheckArgs) -> RunResult<()> {
         return print_json(&report);
     }
 
-    println!("channel: {}", report.channel);
-    println!("manifest: {}", report.source);
-    println!("format: {}", report.manifest_format);
-    println!("platform: {}", report.platform_key);
-    println!("artifact: {}", report.artifact);
-    println!("sha256: {}", report.sha256);
-    if report.update_available {
-        println!(
-            "update available: {} -> {}",
-            report.current_version, report.latest_version
-        );
-    } else {
-        println!(
-            "up-to-date: current {} (latest {})",
-            report.current_version, report.latest_version
-        );
-    }
+    println!("Self-check result");
+    println!("  Channel  : {}", render_channel(&report.channel));
+    println!("  Branch   : {}", report.branch);
+    println!("  Manifest : {}", report.source);
+    println!("  Target   : {}", report.platform_key);
+    println!("  Artifact : {}", report.artifact);
+    println!("  SHA256   : {}", report.sha256);
+    println!("  Current  : {}", report.current_version);
+    println!(
+        "  Latest   : {}",
+        render_latest_version(&report.latest_version, relation)
+    );
+    println!("  Status   : {}", relation_message(relation));
 
     Ok(())
+}
+
+fn render_channel(channel: &str) -> String {
+    if !should_use_color() {
+        return channel.to_string();
+    }
+    let code = match channel {
+        "stable" => "32", // green
+        "beta" => "33",   // yellow
+        "alpha" => "35",  // magenta
+        _ => return channel.to_string(),
+    };
+    format!("\x1b[{}m{}\x1b[0m", code, channel)
+}
+
+fn should_use_color() -> bool {
+    match std::env::var("TERM") {
+        Ok(term) => term != "dumb",
+        Err(_) => true,
+    }
+}
+
+fn render_latest_version(latest: &str, relation: VersionRelation) -> String {
+    render_latest_version_with_color(latest, relation, should_use_color())
+}
+
+fn render_latest_version_with_color(
+    latest: &str,
+    relation: VersionRelation,
+    use_color: bool,
+) -> String {
+    if use_color {
+        if relation == VersionRelation::UpdateAvailable {
+            return format!("\x1b[1;92m{}\x1b[0m", latest);
+        }
+        if relation == VersionRelation::AheadOfChannel {
+            return format!("\x1b[90m{}\x1b[0m", latest);
+        }
+    }
+    latest.to_string()
+}
+
+fn compare_versions(current: &Version, latest: &Version) -> VersionRelation {
+    if latest > current {
+        return VersionRelation::UpdateAvailable;
+    }
+    if latest == current {
+        return VersionRelation::UpToDate;
+    }
+    VersionRelation::AheadOfChannel
+}
+
+fn relation_message(relation: VersionRelation) -> &'static str {
+    match relation {
+        VersionRelation::UpdateAvailable => "update available",
+        VersionRelation::UpToDate => "up-to-date",
+        VersionRelation::AheadOfChannel => "ahead of channel manifest",
+    }
 }
 
 async fn load_release(
@@ -297,6 +359,65 @@ mod tests {
     fn parse_version_accepts_v_prefix() {
         let parsed = parse_version("v0.19.0-alpha.3").unwrap();
         assert_eq!(parsed.to_string(), "0.19.0-alpha.3");
+    }
+
+    #[test]
+    fn compare_versions_update_available() {
+        let current = Version::parse("0.18.0").unwrap();
+        let latest = Version::parse("0.19.0").unwrap();
+        assert_eq!(
+            compare_versions(&current, &latest),
+            VersionRelation::UpdateAvailable
+        );
+    }
+
+    #[test]
+    fn compare_versions_up_to_date() {
+        let current = Version::parse("0.19.0").unwrap();
+        let latest = Version::parse("0.19.0").unwrap();
+        assert_eq!(
+            compare_versions(&current, &latest),
+            VersionRelation::UpToDate
+        );
+    }
+
+    #[test]
+    fn compare_versions_ahead_of_channel() {
+        let current = Version::parse("0.19.0").unwrap();
+        let latest = Version::parse("0.15.3").unwrap();
+        assert_eq!(
+            compare_versions(&current, &latest),
+            VersionRelation::AheadOfChannel
+        );
+    }
+
+    #[test]
+    fn render_channel_unknown_passthrough() {
+        assert_eq!(render_channel("dev"), "dev");
+    }
+
+    #[test]
+    fn render_latest_version_ahead_is_dimmed() {
+        assert_eq!(
+            render_latest_version_with_color("0.15.3", VersionRelation::AheadOfChannel, true),
+            "\u{1b}[90m0.15.3\u{1b}[0m"
+        );
+    }
+
+    #[test]
+    fn render_latest_version_not_ahead_no_dim() {
+        assert_eq!(
+            render_latest_version_with_color("0.19.0", VersionRelation::UpToDate, true),
+            "0.19.0"
+        );
+    }
+
+    #[test]
+    fn render_latest_version_update_available_is_bright() {
+        assert_eq!(
+            render_latest_version_with_color("0.20.0", VersionRelation::UpdateAvailable, true),
+            "\u{1b}[1;92m0.20.0\u{1b}[0m"
+        );
     }
 
     #[test]
