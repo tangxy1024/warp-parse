@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.19.0 Unreleased]
+## [0.19.3 Unreleased]
 
 ### Added
 - **Self Check CLI**: 新增 `wproj self check` 命令，用于按 channel 检查远端更新元数据（仅检查，不安装）。
@@ -17,6 +17,7 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 - **wp-motor**: 核心引擎依赖从 `v1.17.8` 升级到 `v1.18.0`。
 - **wp-connectors**: 连接器依赖从 `v0.7.10-beta` 升级到 `v0.9.0`。
+- **wp-connectors**: 连接器依赖从 `v0.9.0` 升级到 `v0.9.1`，同步上游 HTTP sink 实现以及 ClickHouse 从 `host` 到 `endpoint` 的配置模型调整。
 - **Dependencies**: 核心依赖升级到新主线（`orion-error 0.6`、`wp-connector-api 0.8`、`wp-error 0.8`、`wp-log 0.2` 等）。
 - **Runtime Connectors**: 为规避升级期间 API 不兼容，社区外部连接器注册调整为暂时跳过并输出告警日志。
 
