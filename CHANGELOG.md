@@ -8,7 +8,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.25.19 latest]
+## [0.25.20 latest]
+
+### Changed
+- **Kafka Source 批量接收**：接入 `wp-connectors v0.20.0` —— `recv_impl` 批量凑批后返回
+  `SourceBatch`，默认按字节驱动（`batch_max_bytes=256KiB`，可配 `batch_size`/`batch_timeout_ms`），
+  提升 Kafka → Parser 吞吐（关联 warp-parse#356）。
+- **TCP 源读取修复**：同步 `wp-core-connectors v0.8.4` —— TCP 读改回有界直读，
+  修复 v0.8.3 引入的高吞吐回退（约 19.4万/s → 50.6万/s）。
+
+### Dependencies
+- 升级 `wp-connectors` `v0.19.x` → `v0.20.0`
+- 升级 `wp-core-connectors` `v0.8.3` → `v0.8.4`（TCP 源有界直读修复）
+
+## [0.25.19]
 
 ### Added
 - **PostgreSQL 连接池 `postgres_session` 连接级 session 初始化**：同步 `wp-knowledge v0.16.1`——`[provider.sqldb.postgres_session]` 子配置经 SQLx `after_connect` 对池中每条新连接（含空闲回收补建、断线重连）逐条下发 `SET`（`plan_cache_mode` / `jit` / `application_name`），用于稳定执行计划（如 IP 地理查询锁定 generic plan）；启动时经同一连接池 `current_setting` 自检，不一致报错并定位到具体参数。
